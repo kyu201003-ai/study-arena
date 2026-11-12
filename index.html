@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101426"><title>Study Battle</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d33;--panel2:#1c2742;--line:#2b3858;--muted:#9ba9c7;--text:#f5f7ff;--blue:#6c8cff;--cyan:#58d7e8;--green:#4ed6a0;--red:#ff7185}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#202e58 0,transparent 40%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Noto Sans KR",sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:13px 18px;font-weight:750;color:#fff;background:linear-gradient(110deg,var(--blue),#8c72ff);transition:.18s}button:hover{filter:brightness(1.12);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.ghost{background:#26324d;border:1px solid var(--line)}.outline{background:transparent;border:1px solid var(--line)}.danger{background:#54283b}
+.wrap{max-width:1050px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:12px 0 54px}.brand{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:900;letter-spacing:-.5px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#6c8cff,#53d5e5);display:grid;place-items:center;color:#101426;font-weight:1000;font-size:20px}.userbar{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px}.hero{text-align:center;max-width:700px;margin:0 auto 42px}.eyebrow{display:inline-block;padding:7px 12px;border:1px solid #3d4c75;border-radius:99px;color:#aebfff;background:#182344;font-size:12px;font-weight:800;letter-spacing:1px}.hero h1{font-size:clamp(40px,8vw,68px);line-height:1.05;letter-spacing:-3px;margin:20px 0 14px}.hero h1 span{background:linear-gradient(90deg,#8da5ff,#5de1e8);color:transparent;background-clip:text}.hero p{color:var(--muted);font-size:17px;line-height:1.7;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(150deg,#192440,#121a2e);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 18px 50px #0002}.card h2{margin:0 0 8px;font-size:20px}.card p{color:var(--muted);margin:0 0 20px;line-height:1.55;font-size:14px}.card .emoji{font-size:26px;margin-bottom:15px}.row{display:flex;gap:10px}.row input{flex:1;min-width:0}
+input{width:100%;background:#0d1426;border:1px solid var(--line);color:var(--text);padding:13px 14px;border-radius:12px;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #6c8cff22}
+.auth{max-width:480px;margin:30px auto}.auth .tabs{display:flex;gap:8px;margin-bottom:18px}.auth .tabs button{flex:1}.hidden{display:none!important}.status{margin-top:16px;color:var(--muted);font-size:13px;min-height:20px}.notice{margin:18px 0;padding:13px 15px;background:#28233d;border:1px solid #534779;border-radius:13px;color:#d7d0ff;font-size:13px;line-height:1.6}
+.room{max-width:720px;margin:20px auto}.room-code{font-size:40px;font-weight:950;letter-spacing:8px;text-align:center;color:#9db2ff;margin:12px 0}.players{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}.player{padding:18px;border:1px solid var(--line);background:#111a2e;border-radius:16px}.player small{display:block;color:var(--muted);margin-bottom:8px}.player strong{font-size:17px}.footer{text-align:center;color:#7583a2;font-size:12px;margin:46px 0 20px}
+@media(max-width:650px){.wrap{padding:17px}.top{margin-bottom:38px}.grid{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}.card{padding:21px}.row{flex-direction:column}.players{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="logo">S</div>STUDY BATTLE</div><div class="userbar"><span id="userLabel">로그인이 필요해요</span><button id="logoutBtn" class="ghost hidden">로그아웃</button></div></header>
+<section id="authView" class="auth card">
+ <div class="eyebrow">WELCOME TO THE ARENA</div><h2 style="margin-top:14px">공부 대결 시작하기</h2><p>닉네임으로 입장하고 친구와 실력을 겨뤄 봐!</p>
+ <div class="tabs"><button id="signupTab">회원가입</button><button id="loginTab" class="ghost">로그인</button></div>
+ <form id="authForm"><label id="nickLabel">닉네임</label><input id="nickname" maxlength="16" placeholder="사용할 닉네임" autocomplete="nickname"><label style="display:block;margin:13px 0 7px">이메일</label><input id="email" type="email" required placeholder="name@example.com" autocomplete="email"><label style="display:block;margin:13px 0 7px">비밀번호</label><input id="password" type="password" required minlength="6" placeholder="6자 이상" autocomplete="current-password"><button style="width:100%;margin-top:18px" id="authSubmit">회원가입</button></form>
+ <div class="status" id="authStatus"></div><div class="notice">처음 사용하려면 관리자가 Supabase 프로젝트를 연결해야 해요. 설정 방법은 저장소 README에 있어요.</div>
+</section>
+<section id="homeView" class="hidden">
+ <div class="hero"><div class="eyebrow">READY · SET · THINK</div><h1>공부도 이제<br><span>배틀이다.</span></h1><p>친구와 방을 만들거나, 랜덤 매칭으로 새로운 상대를 만나 봐.<br>집중력과 지식으로 승부하는 Study Battle.</p></div>
+ <div class="grid">
+  <article class="card"><div class="emoji">⚡</div><h2>랜덤 매칭</h2><p>대기 중인 상대를 찾아 바로 대결을 시작해.</p><button id="matchBtn" style="width:100%">상대 찾기</button></article>
+  <article class="card"><div class="emoji">⚔️</div><h2>친구와 대결</h2><p>방 코드를 만들거나 친구에게 받은 코드로 입장해.</p><button id="createBtn" style="width:100%">대결방 만들기</button></article>
+ </div>
+ <div class="card" style="margin-top:16px"><h2>방 코드로 참가</h2><p>친구가 공유한 6자리 코드를 입력해.</p><div class="row"><input id="joinCode" maxlength="6" placeholder="예: A7K2Q9"><button id="joinBtn">참가하기</button></div><div class="status" id="homeStatus"></div></div>
+</section>
+<section id="roomView" class="room card hidden"><button id="backBtn" class="ghost">← 나가기</button><div style="text-align:center;margin-top:20px"><div class="eyebrow">BATTLE ROOM</div><h2 id="roomTitle" style="margin-top:16px">친구 대결방</h2><div class="room-code" id="roomCode">------</div><p style="color:var(--muted)">친구에게 방 코드를 공유해 줘!</p></div><div class="players"><div class="player"><small>PLAYER 1 · HOST</small><strong id="hostName">-</strong></div><div class="player"><small>PLAYER 2 · GUEST</small><strong id="guestName">상대 기다리는 중...</strong></div></div><div class="notice" id="roomStatus">상대가 입장하면 대결을 시작할 수 있어.</div><button id="copyBtn" class="ghost" style="width:100%">방 코드 복사</button></section>
+<div class="footer">STUDY BATTLE · LEARN TOGETHER, WIN TOGETHER</div>
+</main>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+// README의 Supabase 설정값으로 교체해야 실제 회원가입·실시간 방 기능이 작동합니다.
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
+const $ = id => document.getElementById(id);
+const views = ['authView','homeView','roomView'];
+let supabase = null, mode='signup', currentRoom=null, channel=null;
+if(configured) supabase=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+function show(view){views.forEach(v=>$(v).classList.toggle('hidden',v!==view))}
+function status(id,msg){$(id).textContent=msg}
+function setMode(next){mode=next;$('signupTab').classList.toggle('ghost',mode!=='signup');$('loginTab').classList.toggle('ghost',mode!=='login');$('nickname').classList.toggle('hidden',mode==='login');$('nickLabel').classList.toggle('hidden',mode==='login');$('authSubmit').textContent=mode==='signup'?'회원가입':'로그인'}
+$('signupTab').onclick=()=>setMode('signup');$('loginTab').onclick=()=>setMode('login');
+function requireConfig(){if(!supabase){status('authStatus','아직 Supabase 연결 전이에요. 저장소 README의 설정을 먼저 완료해 주세요.');return false}return true}
+$('authForm').onsubmit=async e=>{e.preventDefault();if(!requireConfig())return;status('authStatus','처리 중...');const email=$('email').value.trim(),password=$('password').value,nickname=$('nickname').value.trim();let result;if(mode==='signup'){if(!nickname){status('authStatus','닉네임을 입력해 주세요.');return}result=await supabase.auth.signUp({email,password,options:{data:{nickname}}})}else result=await supabase.auth.signInWithPassword({email,password});if(result.error){status('authStatus',result.error.message);return}if(mode==='signup'&&!result.data.session){status('authStatus','가입 확인 메일을 보냈어요. 이메일을 확인해 주세요.');return}await refreshSession()};
+async function refreshSession(){if(!supabase)return;const {data:{session}}=await supabase.auth.getSession();if(session){const name=session.user.user_metadata.nickname||session.user.email.split('@')[0];$('userLabel').textContent=name;$('logoutBtn').classList.remove('hidden');show('homeView')}else{show('authView');$('logoutBtn').classList.add('hidden')}}
+$('logoutBtn').onclick=async()=>{if(supabase)await supabase.auth.signOut();if(channel)await supabase.removeChannel(channel);currentRoom=null;show('authView')};
+function makeCode(){return Math.random().toString(36).slice(2,8).toUpperCase()}
+async function user(){const {data:{user}}=await supabase.auth.getUser();return user}
+async function openRoom(room){currentRoom=room;const {data:{user:u}}=await supabase.auth.getUser();$('roomCode').textContent=room.code;$('hostName').textContent=room.host_name;$('guestName').textContent=room.guest_name||'상대 기다리는 중...';$('roomTitle').textContent=room.status==='waiting'?'친구 대결방':'대결 준비 완료';status('roomStatus',room.guest_id?'상대가 입장했어! 대결 기능을 준비해 보자.':'친구에게 코드를 공유하고 기다려 줘.');show('roomView');if(channel)await supabase.removeChannel(channel);channel=supabase.channel('room-'+room.id).on('postgres_changes',{event:'*',schema:'public',table:'rooms',filter:'id=eq.'+room.id},payload=>{if(payload.new){currentRoom=payload.new;$('guestName').textContent=payload.new.guest_name||'상대 기다리는 중...';status('roomStatus',payload.new.guest_id?'상대가 입장했어! 두 플레이어가 모였어.':'친구에게 코드를 공유하고 기다려 줘.')}}).subscribe()}
+$('createBtn').onclick=async()=>{if(!supabase){status('homeStatus','Supabase 설정을 완료하면 방을 만들 수 있어.');return}const u=await user(),name=u.user_metadata.nickname||u.email.split('@')[0],code=makeCode();const {data,error}=await supabase.from('rooms').insert({code,host_id:u.id,host_name:name,status:'waiting'}).select().single();if(error){status('homeStatus',error.message);return}await openRoom(data)};
+$('joinBtn').onclick=async()=>{if(!supabase){status('homeStatus','Supabase 설정을 완료하면 방에 참가할 수 있어.');return}const code=$('joinCode').value.trim().toUpperCase();if(code.length!==6){status('homeStatus','6자리 방 코드를 입력해 줘.');return}const u=await user(),name=u.user_metadata.nickname||u.email.split('@')[0];const {data:room,error}=await supabase.from('rooms').select('*').eq('code',code).eq('status','waiting').maybeSingle();if(error||!room){status('homeStatus','참가할 수 있는 방을 찾지 못했어. 코드를 확인해 줘.');return}if(room.host_id===u.id){status('homeStatus','자신이 만든 방에는 참가할 수 없어.');return}const {data,error:joinError}=await supabase.from('rooms').update({guest_id:u.id,guest_name:name,status:'ready'}).eq('id',room.id).is('guest_id',null).select().single();if(joinError||!data){status('homeStatus','이미 다른 사람이 참가했어. 새 방을 찾아 줘.');return}await openRoom(data)};
+$('matchBtn').onclick=async()=>{if(!supabase){status('homeStatus','랜덤 매칭을 사용하려면 Supabase 설정이 필요해.');return}status('homeStatus','상대를 찾는 중...');const u=await user(),name=u.user_metadata.nickname||u.email.split('@')[0];const {data:rooms}=await supabase.from('rooms').select('*').eq('status','waiting').is('guest_id',null).neq('host_id',u.id).limit(1);if(rooms?.length){const r=rooms[0],{data,error}=await supabase.from('rooms').update({guest_id:u.id,guest_name:name,status:'ready'}).eq('id',r.id).is('guest_id',null).select().single();if(data){await openRoom(data);return}}const code=makeCode(),{data,error}=await supabase.from('rooms').insert({code,host_id:u.id,host_name:name,status:'waiting'}).select().single();if(error){status('homeStatus',error.message);return}await openRoom(data);status('roomStatus','랜덤 상대를 기다리는 중이야. 상대가 매칭되면 여기에 표시돼.')};
+$('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(currentRoom.code);status('roomStatus','방 코드가 복사됐어! 친구에게 보내 줘.')}catch{status('roomStatus','방 코드: '+currentRoom.code)}};
+$('backBtn').onclick=async()=>{if(channel)await supabase.removeChannel(channel);channel=null;currentRoom=null;show('homeView')};
+if(supabase){supabase.auth.onAuthStateChange(()=>refreshSession());refreshSession()}else{setMode('signup')}
+</script></body></html>
