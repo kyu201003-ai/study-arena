@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101426"><title>Study Battle</title>
+<meta name="theme-color" content="#101426"><title>Study Arena</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1020;--panel:#151d33;--panel2:#1c2742;--line:#2b3858;--muted:#9ba9c7;--text:#f5f7ff;--blue:#6c8cff;--cyan:#58d7e8;--green:#4ed6a0;--red:#ff7185}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#202e58 0,transparent 40%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Noto Sans KR",sans-serif;min-height:100vh}
@@ -16,7 +16,7 @@ input{width:100%;background:#0d1426;border:1px solid var(--line);color:var(--tex
 </style>
 </head>
 <body><main class="wrap">
-<header class="top"><div class="brand"><div class="logo">S</div>STUDY BATTLE</div><a href="./about.html" style="color:#cbd6ff;text-decoration:none;border:1px solid #2b3858;border-radius:12px;padding:9px 12px;font-size:13px;font-weight:700">서비스 소개</a><div class="userbar"><span id="userLabel">로그인이 필요해요</span><button id="logoutBtn" class="ghost hidden">로그아웃</button></div></header>
+<header class="top"><div class="brand"><div class="logo">S</div>STUDY ARENA</div><a href="./about.html" style="color:#cbd6ff;text-decoration:none;border:1px solid #2b3858;border-radius:12px;padding:9px 12px;font-size:13px;font-weight:700">서비스 소개</a><div class="userbar"><span id="userLabel">로그인이 필요해요</span><button id="logoutBtn" class="ghost hidden">로그아웃</button></div></header>
 <section id="authView" class="auth card">
  <div class="eyebrow">WELCOME TO THE ARENA</div><h2 style="margin-top:14px">공부 대결 시작하기</h2><p>닉네임으로 입장하고 친구와 실력을 겨뤄 봐!</p>
  <div class="tabs"><button id="signupTab">회원가입</button><button id="loginTab" class="ghost">로그인</button></div>
@@ -24,7 +24,7 @@ input{width:100%;background:#0d1426;border:1px solid var(--line);color:var(--tex
  <div class="status" id="authStatus"></div><div class="notice">처음 사용하려면 관리자가 Supabase 프로젝트를 연결해야 해요. 설정 방법은 저장소 README에 있어요.</div>
 </section>
 <section id="homeView" class="hidden">
- <div class="hero"><div class="eyebrow">READY · SET · THINK</div><h1>공부도 이제<br><span>배틀이다.</span></h1><p>친구와 방을 만들거나, 랜덤 매칭으로 새로운 상대를 만나 봐.<br>집중력과 지식으로 승부하는 Study Battle.</p></div>
+ <div class="hero"><div class="eyebrow">READY · SET · THINK</div><h1>공부도 이제<br><span>배틀이다.</span></h1><p>친구와 방을 만들거나, 랜덤 매칭으로 새로운 상대를 만나 봐.<br>집중력과 지식으로 승부하는 Study Arena.</p></div>
  <div class="grid">
   <article class="card"><div class="emoji">⚡</div><h2>랜덤 매칭</h2><p>대기 중인 상대를 찾아 바로 대결을 시작해.</p><button id="matchBtn" style="width:100%">상대 찾기</button></article>
   <article class="card"><div class="emoji">⚔️</div><h2>친구와 대결</h2><p>방 코드를 만들거나 친구에게 받은 코드로 입장해.</p><button id="createBtn" style="width:100%">대결방 만들기</button></article>
@@ -32,7 +32,7 @@ input{width:100%;background:#0d1426;border:1px solid var(--line);color:var(--tex
  <div class="card" style="margin-top:16px"><h2>방 코드로 참가</h2><p>친구가 공유한 6자리 코드를 입력해.</p><div class="row"><input id="joinCode" maxlength="6" placeholder="예: A7K2Q9"><button id="joinBtn">참가하기</button></div><div class="status" id="homeStatus"></div></div>
 </section>
 <section id="roomView" class="room card hidden"><button id="backBtn" class="ghost">← 나가기</button><div style="text-align:center;margin-top:20px"><div class="eyebrow">BATTLE ROOM</div><h2 id="roomTitle" style="margin-top:16px">친구 대결방</h2><div class="room-code" id="roomCode">------</div><p style="color:var(--muted)">친구에게 방 코드를 공유해 줘!</p></div><div class="players"><div class="player"><small>PLAYER 1 · HOST</small><strong id="hostName">-</strong></div><div class="player"><small>PLAYER 2 · GUEST</small><strong id="guestName">상대 기다리는 중...</strong></div></div><div class="notice" id="roomStatus">상대가 입장하면 대결을 시작할 수 있어.</div><button id="copyBtn" class="ghost" style="width:100%">방 코드 복사</button></section>
-<div class="footer">STUDY BATTLE · LEARN TOGETHER, WIN TOGETHER</div>
+<div class="footer">STUDY ARENA · LEARN TOGETHER, WIN TOGETHER</div>
 </main>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
