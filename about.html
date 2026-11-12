@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101426">
+<title>Study Battle 소개</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d33;--line:#2b3858;--muted:#a6b2ce;--text:#f5f7ff;--blue:#7894ff;--cyan:#58d7e8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#202e58 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Noto Sans KR",sans-serif;min-height:100vh}
+.wrap{max-width:980px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:10px 0 76px}.brand{font-size:20px;font-weight:950;letter-spacing:.5px}.brand span{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:13px;margin-right:9px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#101426}.back{color:#dce4ff;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:10px 15px;font-size:14px}.hero{text-align:center;max-width:720px;margin:0 auto 54px}.tag{display:inline-block;border:1px solid #3d4c75;border-radius:99px;padding:7px 13px;color:#b8c6ff;background:#182344;font-size:12px;font-weight:800;letter-spacing:1px}.hero h1{font-size:clamp(40px,8vw,68px);line-height:1.08;letter-spacing:-3px;margin:20px 0}.hero h1 span{background:linear-gradient(90deg,#91a8ff,#5de1e8);background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:17px;line-height:1.8}.cta{display:inline-block;margin-top:15px;text-decoration:none;color:#101426;background:linear-gradient(110deg,#91a8ff,#5de1e8);padding:14px 22px;border-radius:13px;font-weight:900}.section-title{text-align:center;font-size:26px;margin:0 0 22px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(150deg,#192440,#121a2e);border:1px solid var(--line);border-radius:20px;padding:23px}.icon{font-size:28px;margin-bottom:13px}.card h3{margin:0 0 10px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.75}.steps{margin:54px 0 0}.step{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid #26324d}.num{flex:0 0 34px;height:34px;border-radius:11px;background:#26365d;color:#b9c8ff;display:grid;place-items:center;font-weight:900}.step h3{margin:2px 0 6px;font-size:16px}.step p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}.note{margin-top:32px;padding:16px 18px;border:1px solid #514879;background:#28233d;border-radius:14px;color:#ddd6ff;font-size:13px;line-height:1.7}.footer{text-align:center;color:#7785a4;font-size:12px;margin:58px 0 20px}
+@media(max-width:700px){.wrap{padding:17px}.top{margin-bottom:52px}.cards{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}.card{padding:20px}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><span>S</span>STUDY BATTLE</div><a class="back" href="./index.html">대결 페이지로 이동 →</a></header>
+<section class="hero"><div class="tag">LEARN TOGETHER, WIN TOGETHER</div><h1>공부도 이제<br><span>배틀이다.</span></h1><p>Study Battle은 친구와 함께 공부하고 경쟁할 수 있는<br>온라인 학습 대결 플랫폼이야.</p><a class="cta" href="./index.html">지금 시작하기</a></section>
+<h2 class="section-title">Study Battle에서 할 수 있는 것</h2>
+<section class="cards">
+<article class="card"><div class="icon">👤</div><h3>닉네임으로 가입</h3><p>회원가입할 때 원하는 닉네임을 설정해. 대결방에서도 내 닉네임으로 표시돼.</p></article>
+<article class="card"><div class="icon">⚔️</div><h3>친구와 방 만들기</h3><p>대결방을 만들고 6자리 방 코드를 친구에게 공유해. 친구는 코드를 입력해 참가할 수 있어.</p></article>
+<article class="card"><div class="icon">🎲</div><h3>랜덤 매칭</h3><p>랜덤 매칭을 선택하면 참가할 상대를 찾아. 새로운 친구와 대결할 수 있어.</p></article>
+</section>
+<section class="steps"><h2 class="section-title">이용 방법</h2>
+<div class="step"><div class="num">1</div><div><h3>회원가입 또는 로그인</h3><p>이메일과 비밀번호를 입력하고 닉네임을 설정해 입장해.</p></div></div>
+<div class="step"><div class="num">2</div><div><h3>대결 방식 선택</h3><p>친구와 대결하려면 방을 만들고, 새로운 상대를 원하면 랜덤 매칭을 선택해.</p></div></div>
+<div class="step"><div class="num">3</div><div><h3>상대와 함께 입장</h3><p>친구는 방 코드로 참가할 수 있어. 두 사람이 방에 모이면 대결을 준비해.</p></div></div>
+</section>
+<div class="note">※ 현재 Study Battle은 초기 버전이야. 회원가입, 방 생성, 코드 참가, 매칭 기능을 제공하며 실제 퀴즈 진행과 점수 집계 기능은 아직 개발 단계야.</div>
+<footer class="footer">STUDY BATTLE · LEARN TOGETHER, WIN TOGETHER</footer>
+</main></body></html>
